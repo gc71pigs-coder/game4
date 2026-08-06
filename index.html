@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>사자보이즈 vs 한국귀신</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="stage">
+    <div id="game-wrap">
+      <div class="frame-glow" aria-hidden="true"></div>
+      <canvas id="game" width="960" height="640"></canvas>
+
+      <div id="hud">
+        <div class="hud-left">
+          <div class="hud-chip hp-chip">
+            <span class="label">HP</span>
+            <div class="bar"><div id="hp-fill"></div></div>
+          </div>
+        </div>
+        <div class="hud-right">
+          <div class="hud-chip">
+            <span class="label">CHAR</span>
+            <span id="char-name" class="value">진우</span>
+          </div>
+          <div class="hud-chip">
+            <span class="label">SCORE</span>
+            <span id="score" class="value">0</span>
+          </div>
+          <div class="hud-chip">
+            <span class="label">WAVE</span>
+            <span id="wave" class="value">1</span>
+          </div>
+          <div class="hud-chip">
+            <span class="label">KILLS</span>
+            <span id="kills" class="value">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="overlay" class="overlay">
+        <div class="panel">
+          <p class="eyebrow">K-POP DEMON STAGE</p>
+          <h1>사자보이즈<br /><span>vs 한국귀신</span></h1>
+          <p class="subtitle">저승의 아이돌이 되어, 몰려오는 원귀들을 잠재우세요</p>
+          <ul class="controls">
+            <li><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span>이동</span></li>
+            <li><kbd>MOUSE</kbd><span>조준 · 클릭 사격</span></li>
+            <li><kbd>SPACE</kbd><span>일시정지</span></li>
+          </ul>
+          <button id="start-btn" type="button"><span>캐릭터 선택</span></button>
+        </div>
+      </div>
+
+      <div id="select-overlay" class="overlay hidden">
+        <div class="select-panel">
+          <p class="eyebrow">CHARACTER LOADOUT</p>
+          <h2>출전 멤버 선택</h2>
+          <p class="select-sub">총기와 전투 스타일이 다른 멤버를 고르세요</p>
+          <div class="select-cards" id="select-cards">
+            <button type="button" class="scard scard--crimson is-selected" data-id="jinu">
+              <span class="scard-avatar"></span>
+              <span class="scard-name">진우</span>
+              <span class="scard-gun">CRIMSON AR</span>
+              <span class="scard-desc">돌격소총 · 균형형</span>
+              <span class="scard-stats">공격 78 · 속도 62 · 사거리 70</span>
+            </button>
+            <button type="button" class="scard scard--gold" data-id="abby">
+              <span class="scard-avatar"></span>
+              <span class="scard-name">애비</span>
+              <span class="scard-gun">GOLDEN SG</span>
+              <span class="scard-desc">산탄총 · 근접 화력</span>
+              <span class="scard-stats">공격 92 · 속도 48 · 사거리 40</span>
+            </button>
+            <button type="button" class="scard scard--azure" data-id="baby">
+              <span class="scard-avatar"></span>
+              <span class="scard-name">베이비</span>
+              <span class="scard-gun">AZURE SMG</span>
+              <span class="scard-desc">기관단총 · 기동형</span>
+              <span class="scard-stats">공격 58 · 속도 90 · 사거리 55</span>
+            </button>
+          </div>
+          <div class="select-actions">
+            <button id="back-menu-btn" type="button" class="btn-ghost"><span>뒤로</span></button>
+            <button id="confirm-btn" type="button"><span>출전하기</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div id="pause-overlay" class="overlay hidden">
+        <div class="panel panel--sm">
+          <p class="eyebrow">PAUSED</p>
+          <h2>일시정지</h2>
+          <p>Space 또는 버튼을 눌러 계속</p>
+          <button id="resume-btn" type="button"><span>계속하기</span></button>
+        </div>
+      </div>
+
+      <div id="gameover-overlay" class="overlay hidden">
+        <div class="panel panel--sm">
+          <p class="eyebrow">STAGE FAILED</p>
+          <h2>게임 오버</h2>
+          <div class="stats-row">
+            <div><span class="s-label">점수</span><strong id="final-score">0</strong></div>
+            <div><span class="s-label">웨이브</span><strong id="final-wave">1</strong></div>
+            <div><span class="s-label">처치</span><strong id="final-kills">0</strong></div>
+          </div>
+          <button id="restart-btn" type="button"><span>캐릭터 선택</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
